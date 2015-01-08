@@ -1,5 +1,11 @@
-SlimStarter
+Sitenator
 ===========
+
+Baseado no SlimStarter(https://github.com/xsanisty/SlimStarter) que usa Slim Framework, Sentry, Eloquent ORM e outros para gerenciar usuários e criar um sistema modular. 
+
+A idéia é ter um projeto gerenciador de conteudo ou seja um CMS, porém no estilo criador de site como por exemplo PyroCMS (https://www.pyrocms.com/),  Wordpress(http://wordpress.com) e outros onde tem-se o cms porém tem uma "loja" (marketplace) para se comprar mais funcionalidades. Será tudo da in9.
+
+
 
 SlimStarter is a bootstrap application built with Slim Framework in MVC architecture,
 with Laravel's Eloquent as database provider (Model) and Twig as template engine (View).
