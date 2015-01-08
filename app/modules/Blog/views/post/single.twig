@@ -1,0 +1,17 @@
+{% extends 'default/layout.twig' %}
+{% block content %}
+
+    <div class="container">
+        
+        <p>Single Post</p>
+
+        <h3>{{ post.title }}</h3>
+        <small>by {{ post.user_id }} at {{ post.date_publish }}</small>
+
+        <div class="well">
+            {{ post.description }}
+        </div>
+
+    </div>
+
+{% endblock %}

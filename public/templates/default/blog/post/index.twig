@@ -1,0 +1,16 @@
+{% extends 'default/layout.twig' %}
+{% block content %}
+
+    <div class="container">
+        
+        <p>Dentro do bloco de body</p>
+
+        {% for item in posts %}
+            <p>
+                <a href="{{ baseUrl() }}/blog/{{item.locale}}/{{item.slug}}" class="btn btn-default">* {{ item.title }} ({{item.locale}})</a>
+            </p>
+        {% endfor %}
+        
+    </div>
+
+{% endblock %}

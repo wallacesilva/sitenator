@@ -1,0 +1,20 @@
+{% include 'header.twig' %}
+    
+    <div class="container sections-wrapper">
+        <div class="row">
+            <div class="primary col-md-8 col-sm-12 col-xs-12">
+
+                {% for item in posts %}
+                    {% include 'content_items.twig' %}
+                {% endfor %}
+
+            </div><!--//primary-->
+            <div class="secondary col-md-4 col-sm-12 col-xs-12">
+                
+                {% include 'sidebar.twig' %}
+              
+            </div><!--//secondary-->    
+        </div><!--//row-->
+    </div><!--//masonry-->
+
+{% include 'footer.twig' %}

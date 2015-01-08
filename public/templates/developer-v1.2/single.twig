@@ -1,0 +1,30 @@
+{% include 'header.twig' %}
+    
+    <div class="container sections-wrapper">
+        <div class="row">
+            <div class="primary col-md-8 col-sm-12 col-xs-12">
+
+                {% set item = post %}
+                <section class="section">
+                    <div class="section-inner">
+                        <h2 class="heading">
+                            <a href="{{base_url}}/blog/{{ item.locale }}/{{ item.slug }}">{{ item.title }}</a>
+                            <br> 
+                            <small><small>posted on {{ item.date_publish }} by {{ item.user_id }}</small></small>
+                        </h2>
+                        <div class="content">
+                            {{ item.description }}
+                        </div><!--//content-->
+                    </div><!--//section-inner-->
+                </section><!--//section-->
+
+            </div><!--//primary-->
+            <div class="secondary col-md-4 col-sm-12 col-xs-12">
+                
+                {% include 'sidebar.twig' %}
+              
+            </div><!--//secondary-->    
+        </div><!--//row-->
+    </div><!--//masonry-->
+ 
+{% include 'footer.twig' %}

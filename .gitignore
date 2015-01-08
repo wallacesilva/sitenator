@@ -1,0 +1,4 @@
+vendor
+dev
+composer.lock
+app/config/database.php

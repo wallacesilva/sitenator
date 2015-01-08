@@ -1,0 +1,12 @@
+<section class="section">
+    <div class="section-inner">
+        <h2 class="heading">
+            <a href="{{base_url}}/blog/{{ item.locale }}/{{ item.slug }}">{{ item.title }}</a>
+            <br> 
+            <small><small>posted on {{ item.date_publish }} by {{ item.user_id }}</small></small>
+        </h2>
+        <div class="content">
+            {{ item.description_short }}
+        </div><!--//content-->
+    </div><!--//section-inner-->
+</section><!--//section-->
