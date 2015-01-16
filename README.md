@@ -7,11 +7,6 @@ A idéia é ter um projeto gerenciador de conteudo ou seja um CMS, porém no est
 
 
 
-SlimStarter is a bootstrap application built with Slim Framework in MVC architecture,
-with Laravel's Eloquent as database provider (Model) and Twig as template engine (View).
-
-Additional package is Sentry as authentication provider and Slim-facade which provide easy access to underlying Slim API
-with static interface like Laravel syntax (built based on Laravel's Facade).
 
 ####Showcase
 You can test SlimStarter in live site by visiting here :
@@ -21,61 +16,53 @@ You can test SlimStarter in live site by visiting here :
 with username ```admin@admin.com``` and password ```password```.
 
 
-####Installation
+####Instalação
 
-> You can now install SlimStarter on pagodabox via App Cafe https://pagodabox.com/cafe/ikhsan017/slimstarter
+> Veja como instalar o sistema
 
-
-#####1 Manual Install
-You can manually install SlimStarter by cloning this repo or download the zip file from this repo, and run ```composer install```.
-```
-$git clone https://github.com/xsanisty/SlimStarter.git .
-$composer install
-```
-
-#####2 Install via ```composer create-project```
-Alternatively, you can use ```composer create-project``` to install SlimStarter without downloading zip or cloning this repo.
+#####1 Instalação Manual
+Após baixar o código execute  ```composer install```.
 
 ```
-composer create-project xsanisty/slim-starter --stability="dev"
+$ git clone https://wallacesilva@bitbucket.org/wallacesilva/sitenator.git
+$ composer install
 ```
 
-#####3 Setup Permission
-After composer finished install the dependencies, you need to change file and folder permission.
+#####2 Configurações de Permissões
+Depois de executar as depencias com o composer install, você precisa mudar as permissões dos arquivos e pastas a seguir:
+
 ```
 chmod -R 777 app/storage/
 chmod 666 app/config/database.php
 ```
 
-#####4 Configure and Setup Database
-You can now access the installer by pointing install.php in your browser
+#####3 Configurar banco de dados
+Você pode acessar o instalador via browser, com algo similar a:
 ```
-http://localhost/path/to/SlimStarter/public/install.php
+http://localhost/path/to/sitenator/public/install.php
 ```
 
+####Configuração
+Configurações do sistema ficam em ```app/config```, pode editar database.php, cookie.php e qualquer outro que precise
 
 
-####Configuration
-Configuration file of SlimStarter located in ```app/config```, edit the database.php, cookie.php and other to match your need
+####Rotas (Urls)
+Configuração de rotas fica localizado em ```app/routes.php```, isso é usado para acessar o route facade do Slim Router(slim framework).
+Se você preferir pode usar a instancia do Slim para alterar as rotas vias $app.
 
-####Routing
-Routing configuration is located in ```app/routes.php```, it use Route facade to access underlying Slim router.
-If you prefer the 'Slim' way, you can use $app to access Slim instance
-
-
-Route to closure
+Exemplo de rota
 ```php
 Route::get('/', function(){
     View::display('welcome.twig');
 });
 
-/** the Slim way */
+/** Usando Slim diretamente */
 $app->get('/', function() use ($app){
     $app->view->display('welcome.twig');
 });
 ```
 
-Route to controller method
+Rota para um metodo do Controller com verbos http
 ```php
 /** get method */
 Route::get('/', 'SomeController:someMethod');
@@ -90,7 +77,7 @@ Route::put('/post/:id', 'PostController:update');
 Route::delete('/post/:id', 'PostController:destroy');
 ```
 
-Route Middleware
+Route Middleware (Slim Framework)
 ```php
 /** route middleware */
 Route::get('/admin', function(){
@@ -98,9 +85,9 @@ Route::get('/admin', function(){
 }, 'AdminController:index');
 ```
 
-Route group
+Grupo de Rotas
 ```php
-/** Route group to book resource */
+/** Grupo de rota para recurso/class Book */
 Route::group('/book', function(){
     Route::get('/', 'BookController:index'); // GET /book
     Route::post('/', 'BookController:store'); // POST /book
@@ -112,10 +99,10 @@ Route::group('/book', function(){
 });
 ```
 
-Route Resource
-this will have same effect on route group above like Laravel Route::resource
+Route Resource (Recurso de Rota)
+Isso vai ter o mesmo efeito que o grupo de rotas visto acima e como o Laravel Route::resource
 ```php
-/** Route to book resource */
+/** Recurso de rota pra Book/Livro */
 Route::resource('/book', 'BookController');
 ```
 
@@ -131,23 +118,20 @@ Route::controller('/book', 'BookController');
  */
 ```
 
-####Model
-Models are located in ```app/models``` directory, since Eloquent is used as database provider, you can write model like you
-write model for Laravel, for complete documentation about eloquent, please refer to http://laravel.com/docs/eloquent
+####Modelo do Banco / ORM (Model)
+Models ficam na pasta ```app/models```, o Eloquent é usado como um gerenciador de banco de dados, você pode escrever um model como você escreveria um Model no Laravel. Para uma documentação completa sobre o Eloquent acesse [http://laravel.com/docs/eloquent](http://laravel.com/docs/eloquent)
 
-file : app/models/Book.php
+arquivo: app/models/Book.php
 ```php
 class Book Extends Model{}
 ```
->Note: Eloquent has some limitations due to dependency to some Laravel's and Symfony's components which is not included,
-such as ```remember()```, ```paginate```, and validation method, which is depend on ```Illuminate\Cache```, ```Illuminate\Filesystem```,
-```Symfony\Finder```, etc.
+>Observação: Eloquent tem algumas limitações de dependências para alguns componentes do Laravel e Symfony Framework que não foram incluidas, como por exemplo ```remember()```, ```paginate```, e o metodo de validação, que depende do ```Illuminate\Cache```, ```Illuminate\Filesystem```, ```Symfony\Finder```, dentre outros.
 
 ####Controller
-Controllers are located in ```app/controllers``` directory, you may extends the BaseController to get access to predefined helper.
-You can also place your controller in namespace to group your controller.
+Controollers ficam na pasta ```app/controllers```, você pode dar um "extends" no BaseController para ter acesso aos objetos predefinidos.
+Você pode também colocar seu controller no namespace para agrupar seu controller.
 
-file : app/controllers/HomeController.php
+arquivo : app/controllers/HomeController.php
 ```php
 Class HomeController extends BaseController{
 
@@ -158,18 +142,19 @@ Class HomeController extends BaseController{
 }
 ```
 
-#####Controller helper
+#####Controller helper (Controller de Ajuda)
 
-######Get reference to Slim instance
-You can access Slim instance inside your controller by accessing $app property
+######Pegar referencia para a instancia do Slim Framework
+Você pode acessar a instancia do Slim no seu controller acessando a propriedade $app.
 ```php
 $this->app; //reference to Slim instance
 ```
 
 ######Loading javascript assets or CSS assets
-SlimStarter shipped with default master template with js and css asset already in place, to load your own js or css file
-you can use ```loadJs``` or ```loadCss``` , ```removeJs``` or ```removeCss``` to remove js or css, ```resetJs``` or ```resetCss```
-to remove all queued js or css file.
+######Carregando assets javascripts ou CSS
+O sistema possui um template padrão com js e css, porém para carregar seu próprio arquivo js e css voce pode usar ```loadJs``` ou ```loadCss``` , 
+```removeJs``` ou ```removeCss``` para remover js ou css, 
+```resetJs``` ou  ```resetCss``` para remover todos os arquivos js or css adicionados.
 
 ```php
 /**
