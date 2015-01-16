@@ -5,16 +5,13 @@ Baseado no SlimStarter(https://github.com/xsanisty/SlimStarter) que usa Slim Fra
 
 A idéia é ter um projeto gerenciador de conteudo ou seja um CMS, porém no estilo criador de site como por exemplo PyroCMS (https://www.pyrocms.com/),  Wordpress(http://wordpress.com) e outros onde tem-se o cms porém tem uma "loja" (marketplace) para se comprar mais funcionalidades. Será tudo da in9.
 
-
-
-
-####Showcase
-You can test SlimStarter in live site by visiting here :
-(shared hosting) http://slimstarter.xsanisty.com
-(pagodabox) http://slimstarter.gopagoda.com
-
-with username ```admin@admin.com``` and password ```password```.
-
+####Lista de Tarefas
+- Gerenciar páginas frontend;
+- Criar gerenciador de páginas no admin para poder add, editar, remover via admin;
+- Melhorar o sistema de templates;
+- Melhorar o tema do admin para algo mais popular e que combine melhor com o projeto;
+- Suporte a Multilinguagem;
+- Começar a criar outros módulos como: Blog, Galerias, Banners, Blocos(estilo widgets);
 
 ####Instalação
 
